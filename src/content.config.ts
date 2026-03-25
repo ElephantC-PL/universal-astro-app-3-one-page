@@ -12,6 +12,27 @@ const blog = defineCollection({
 	}),
 });
 
+const vDefault = defineCollection({	
+	loader: glob({ base: './src/content/version/default', pattern: '**/*.{md,mdx}' }),	
+	schema: () => z.object({
+		title: z.string(),			
+	}),
+});
+
+const v2026 = defineCollection({	
+	loader: glob({ base: './src/content/version/2026', pattern: '**/*.{md,mdx}' }),	
+	schema: () => z.object({
+		title: z.string(),			
+	}),
+});
+
+const v2025 = defineCollection({	
+	loader: glob({ base: './src/content/version/2025', pattern: '**/*.{md,mdx}' }),	
+	schema: () => z.object({
+		title: z.string(),			
+	}),
+});
+
 const home = defineCollection({	
 	loader: glob({ base: './src/content/page/home', pattern: '**/*.{md,mdx}' }),	
 	schema: () => z.object({
@@ -67,4 +88,4 @@ const nested = defineCollection({
 	}),
 });
 
-export const collections = { blog, home, aboutUs, termsOfService, privacyPolicy, cookiesPage, cookiesPopup, error404, nested };
+export const collections = { vDefault, v2026, v2025, blog, home, aboutUs, termsOfService, privacyPolicy, cookiesPage, cookiesPopup, error404, nested };

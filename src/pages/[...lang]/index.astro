@@ -13,7 +13,11 @@ export function getStaticPaths() {
 
 const lang = Astro.currentLocale as Lang;
 
-const entry = await getEntry('home', lang );
+const versions = ['vDefault', 'v2026', 'v2025'];
+
+const currentVersion = 'v2026';
+
+const entry = await getEntry(currentVersion, lang );
 
 if (!entry) {
   throw new AstroError(`No home content for lang=${lang}`);
