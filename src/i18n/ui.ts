@@ -57,32 +57,5 @@ export const ui = {
       accepted: 'Cookies accepted',
       rejected: 'Cookies rejected'
     }
-  },
-  uk: {
-    name: 'Астро Блог',
-    nav: {
-      home: 'Головна',
-      about: 'Про нас',
-      blog: 'Блог',
-      nested: 'Вкладене',
-    },
-    footer: {
-      copyright: 'Ваше імʼя тут. Всі права захищені.',
-      privacyPolicy: 'Політика конфіденційності',
-      cookies: 'Українська',
-      termsOfService: 'Умови використання'
-    },
-    meta: {
-      description: 'Ласкаво просимо на мій веб-сайт!',
-    },
-    buttons: {
-      accept: 'Прийняти',
-      reject: 'Відхилити'
-    },
-    cookiesStatus: {
-      unknown: 'Немає налаштувань (користувач не вибрав)',
-      accepted: 'Українська прийняті',
-      rejected: 'Українська відхилені'
-    }
   }
 } as const;

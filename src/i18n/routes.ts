@@ -13,23 +13,19 @@ import type {Lang } from "./config";
 export const blogRoutes: Routes = {
   firstpost: {
     pl: 'pierwszy-wpis',
-    en: 'first-post',
-    uk: 'перша-стаття',
+    en: 'first-post',   
   },
   secondpost: {
     pl: 'drugi-wpis',
     en: 'second-post',
-    uk: 'друга-стаття',
   },
   thirdpost: {
     pl: 'trzeci-wpis',
     en: 'third-post',
-    uk: 'третя-стаття',
   },
   markdownstyleguide: {
     pl: 'stylowanie-markdown',
     en: 'markdown-style-guide',
-    uk: 'настанови-markdown',
   }
 };
 
@@ -44,43 +40,35 @@ export const routes: Routes = {
   aboutUs: {
     pl: 'o-nas',
     en: 'about-us',
-    uk: 'про-нас',
   },
   blog: {
     pl: 'blog',
     en: 'blog',
-    uk: 'блог',
     children: blogRoutes
   },
   privacyPolicy: {
     pl: 'polityka-prywatnosci',
     en: 'privacy-policy',
-    uk: 'політика-конфіденційності'
   }, 
   cookies: {
     pl: 'ciasteczka',
     en: 'cookies',
-    uk: 'українська'
   },
   termsOfService: {
     pl: 'regulamin',
     en: 'termsOfService',
-    uk: 'умовиВикористання' 
   },
   deep: {
     pl: 'gleboko',
     en: 'deep',
-    uk: 'глибоко',
     children: {
       deeper: {
         pl: 'glebiej',
         en: 'deeper',
-        uk: 'глибше',
         children: {
           nested: {
             pl: 'zagniezdzone',
             en: 'nested',
-            uk: 'вкладене',
           }
         }
       }

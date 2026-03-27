@@ -10,7 +10,7 @@ export default defineConfig({
 	integrations: [mdx(), sitemap()],
 	i18n: {
 		defaultLocale: "pl",
-		locales: ["pl", "en", "uk"],
+		locales: ["pl", "en"],
 		routing: {
 			prefixDefaultLocale: false,
 			redirectToDefaultLocale: true

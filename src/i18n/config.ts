@@ -4,7 +4,7 @@
 */
 
 /*   All languages in aplication.   */
-export const LOCALES = ['pl', 'en', 'uk'] as const;
+export const LOCALES = ['pl', 'en'] as const;
 
 /*   Main language. */
 export const DEFAULT_LOCALE: Lang = 'pl';
