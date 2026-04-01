@@ -1,0 +1,35 @@
+
+---
+import Layout from '../../layouts/Static.astro';
+import AboutHeroImage from '../../assets/blog-placeholder-about.jpg';
+import { getAllTranslatedPaths } from '../../i18n/utils';
+import { versions, currentVersion } from '../../version.config';
+import { DEFAULT_LOCALE } from '../../i18n/config';
+
+export function getStaticPaths() {   	
+	const paths = versions.flatMap(version => {
+		const translatedRoots = getAllTranslatedPaths(version);
+		return translatedRoots.map(({ params }) => {
+			const { lang } = params;
+			const { [version]: value, ...rest } = params;
+			return ({ 
+				params: { version: version === currentVersion ? '' : value , ...rest},
+				props: { version: value, lang: lang || DEFAULT_LOCALE } 
+			})
+		});
+	});  	
+	return paths;
+};
+
+const {version, lang} = Astro.props;
+---
+
+<Layout
+	title={version}
+	description="Lorem ipsum dolor sit amet"
+	heroImage={AboutHeroImage}
+>
+	<h1>{version}</h1>
+	<p>{lang}</p>
+</Layout>
+

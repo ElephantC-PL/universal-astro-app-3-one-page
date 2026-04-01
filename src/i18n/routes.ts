@@ -29,6 +29,22 @@ export const blogRoutes: Routes = {
   }
 };
 
+export const versionRoutes: Routes = {
+  'v2026': {
+    pl: '2026',
+    en: '2026',
+  },
+  'v2025': {
+    pl: '2025',
+    en: '2025',
+  },
+  'vDefault': {
+    pl: 'domyslna',
+    en: 'default',
+  }
+};
+
+
 /*
   MAIN TRANSLATIONS OBJECT
 
@@ -74,6 +90,7 @@ export const routes: Routes = {
       }
     }
   },
+  ...versionRoutes
 };
 
 
