@@ -12,6 +12,11 @@ export const ui = {
       blog: 'Blog',
       nested: 'Zagnieżdżone',
     },
+    version: {
+      vDefault: 'Domyślna',
+      v2026: '2026',
+      v2025: '2025'
+    },
     footer: {
       copyright: 'Twoje imię tutaj. Wszelkie prawa zastrzeżone.',
       privacyPolicy: 'Polityka prywatności',
@@ -38,6 +43,11 @@ export const ui = {
       about: 'About us',
       blog: 'Blog',
       nested: 'Nested',
+    },
+    version: {
+      vDefault: 'Default',
+      v2026: '2026',
+      v2025: '2025'
     },
     footer: {
       copyright: 'Your name here. All rights reserved.',
