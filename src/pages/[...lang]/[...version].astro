@@ -3,33 +3,70 @@
 import Layout from '../../layouts/Static.astro';
 import AboutHeroImage from '../../assets/blog-placeholder-about.jpg';
 import { getAllTranslatedPaths } from '../../i18n/utils';
-import { versions, currentVersion } from '../../version.config';
+import { VERSIONS, CURRENT_VERSION } from '../../version.config';
 import { DEFAULT_LOCALE } from '../../i18n/config';
+import { getCollection } from 'astro:content';
+import { SECTIONS_ORDER } from '../../version.config';
+import DefaultSection from '../../components/DefaultSection.astro';
+import { render } from 'astro:content';
 
 export function getStaticPaths() {   	
-	const paths = versions.flatMap(version => {
+	const paths = VERSIONS.flatMap(version => {
 		const translatedRoots = getAllTranslatedPaths(version);
 		return translatedRoots.map(({ params }) => {
 			const { lang } = params;
 			const { [version]: value, ...rest } = params;
 			return ({ 
-				params: { version: version === currentVersion ? '' : value , ...rest},
-				props: { version: value, lang: lang || DEFAULT_LOCALE } 
+				params: { version: version === CURRENT_VERSION ? '' : value , ...rest},
+				props: {version: version, translatedVersion: value, lang: lang || DEFAULT_LOCALE } 
 			})
 		});
 	});  	
 	return paths;
 };
 
-const {version, lang} = Astro.props;
+const {version, translatedVersion, lang} = Astro.props;
+
+const all = await getCollection('version');
+
+const sectionsRaw = all
+  .map((entry) => {
+    const [entryVersion, section, entryLang] = entry.id.split('/');
+
+    return {
+      ...entry,
+      version: entryVersion,
+      section,
+      lang: entryLang,
+    };
+  })
+  .filter(
+    (entry) => entry.lang === lang && entry.version === version.toLowerCase()
+  );
+
+const sections = SECTIONS_ORDER
+  .map((type) =>
+    sectionsRaw.find((s) => s.data.type === type)
+  )
+  .filter((s): s is NonNullable<typeof s> => Boolean(s));
+
+
 ---
 
 <Layout
-	title={version}
+	title={translatedVersion}
 	description="Lorem ipsum dolor sit amet"
 	heroImage={AboutHeroImage}
 >
-	<h1>{version}</h1>
-	<p>{lang}</p>
+	<h1>{translatedVersion}</h1>
+	<p>{lang}</p>	
+	{sections.map(async (section) => {
+		const { Content } = await render(section);	 
+      return (        
+        <DefaultSection data={section.data}>  
+			<Content />            
+		</DefaultSection>             
+      );
+    })}
 </Layout>
 

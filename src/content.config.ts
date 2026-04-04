@@ -1,6 +1,21 @@
 import { glob } from 'astro/loaders';
 import { defineCollection, z } from 'astro:content';
 
+const version = defineCollection({
+	loader: glob({ base: './src/content/version', pattern: '**/*.{md,mdx}' }),	
+  	schema: z.discriminatedUnion('type', [
+		z.object({
+			type: z.literal('section1'),      
+		}),
+		z.object({
+			type: z.literal('section2'),      
+		}),
+		z.object({
+			type: z.literal('section3'),      
+		}),		
+  	]),
+});
+
 const blog = defineCollection({	
 	loader: glob({ base: './src/content/blog', pattern: '**/*.{md,mdx}' }),	
 	schema: ({ image }) => z.object({
@@ -12,26 +27,6 @@ const blog = defineCollection({
 	}),
 });
 
-const vDefault = defineCollection({	
-	loader: glob({ base: './src/content/version/default', pattern: '**/*.{md,mdx}' }),	
-	schema: () => z.object({
-		title: z.string(),			
-	}),
-});
-
-const v2026 = defineCollection({	
-	loader: glob({ base: './src/content/version/2026', pattern: '**/*.{md,mdx}' }),	
-	schema: () => z.object({
-		title: z.string(),			
-	}),
-});
-
-const v2025 = defineCollection({	
-	loader: glob({ base: './src/content/version/2025', pattern: '**/*.{md,mdx}' }),	
-	schema: () => z.object({
-		title: z.string(),			
-	}),
-});
 
 const home = defineCollection({	
 	loader: glob({ base: './src/content/page/home', pattern: '**/*.{md,mdx}' }),	
@@ -88,4 +83,4 @@ const nested = defineCollection({
 	}),
 });
 
-export const collections = { vDefault, v2026, v2025, blog, home, aboutUs, termsOfService, privacyPolicy, cookiesPage, cookiesPopup, error404, nested };
+export const collections = { version, blog, home, aboutUs, termsOfService, privacyPolicy, cookiesPage, cookiesPopup, error404, nested };
