@@ -1,5 +1,7 @@
 ---
 import MainMenu from '../components/MainMenu.astro';
+
+const menu = Astro.props.menu as string[] | undefined;
 ---
 
 <div class="drawer">
@@ -11,7 +13,7 @@ import MainMenu from '../components/MainMenu.astro';
         <label for="menu-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
 
         <ul class="menu bg-base-200 text-base-content min-h-full w-80 p-4">
-            <MainMenu/>
+            <MainMenu menu={menu} />
         </ul>
     </div>
 </div>		

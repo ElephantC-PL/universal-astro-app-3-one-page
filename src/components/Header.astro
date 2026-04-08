@@ -9,6 +9,8 @@ const lang = Astro.currentLocale as Lang;
 
 const t = useTranslations(lang);
 
+const menu = Astro.props.menu as string[] | undefined;
+
 ---
 <header class="navbar bg-base-100 shadow-sm fixed top-0 left-0 w-full z-50">
   <div class="navbar-start">
@@ -19,7 +21,7 @@ const t = useTranslations(lang);
   </div>
   <div class="navbar-center hidden lg:flex">
     <ul class="menu menu-horizontal space-x-2">
-      <MainMenu/>
+      <MainMenu menu={menu} />
     </ul>
   </div>
   <div class="navbar-end">   

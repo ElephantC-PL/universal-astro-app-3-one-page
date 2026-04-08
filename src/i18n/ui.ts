@@ -17,6 +17,11 @@ export const ui = {
       v2026: '2026',
       v2025: '2025'
     },
+    section: {
+      section1: 'Sekcja 1',
+      section2: 'Sekcja 2',
+      section3: 'Sekcja 3',
+    },
     footer: {
       copyright: 'Twoje imię tutaj. Wszelkie prawa zastrzeżone.',
       privacyPolicy: 'Polityka prywatności',
@@ -48,6 +53,11 @@ export const ui = {
       vDefault: 'Default',
       v2026: '2026',
       v2025: '2025'
+    },
+    section: {
+      section1: 'Section 1',
+      section2: 'Section 2',
+      section3: 'Section 3',
     },
     footer: {
       copyright: 'Your name here. All rights reserved.',

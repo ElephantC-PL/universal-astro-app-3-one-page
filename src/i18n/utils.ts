@@ -1,7 +1,7 @@
 import { ui } from './ui';
 import { DEFAULT_LOCALE, LOCALES, PREFIX_DEFAULT_LOCALE } from './config';
 import type { Lang } from './config';
-import { routes } from './routes';
+import { routes, fragmentRoutes } from './routes';
 import type { Routes, RouteNode } from './routes';
 
 /*
@@ -374,5 +374,13 @@ export function getPostsInRequiredLanguage<T extends { id: string }>(posts: T[],
   }
 
   return result;
+}
+
+export function getTranslatedUrlFragment(lang: Lang, fragment: string): string {
+  const route = fragmentRoutes[fragment];
+  if (!route) {
+    throw new Error(`No route found for fragment: ${fragment}`);    
+  } 
+  return route[lang];
 }
 

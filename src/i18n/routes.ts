@@ -93,6 +93,20 @@ export const routes: Routes = {
   ...versionRoutes
 };
 
+export const fragmentRoutes: Routes = {
+  section1: {
+    pl: 'sekcja-1',
+    en: 'section-1',
+  },
+  section2: {
+    pl: 'sekcja-2',
+    en: 'section-2',
+  },
+  section3: {
+    pl: 'sekcja-3',
+    en: 'section-3',
+  }
+};
 
 /*  
   DO NOT CHANGE !!!! 

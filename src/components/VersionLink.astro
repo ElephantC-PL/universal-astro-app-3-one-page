@@ -1,11 +1,9 @@
 ---
-import type { HTMLAttributes } from 'astro/types';
 import type { Lang } from "../i18n/config";
 import { CURRENT_VERSION } from "../version.config";
-import { getTranslatedUrl, useTranslations } from "../i18n/utils";
+import { getTranslatedUrl } from "../i18n/utils";
 
 const lang = Astro.currentLocale as Lang;
-const t = useTranslations(lang);
 
 const { version, class: className, ...props } = Astro.props;
 const pathname = decodeURIComponent(Astro.url.pathname.replace(import.meta.env.BASE_URL, ''));

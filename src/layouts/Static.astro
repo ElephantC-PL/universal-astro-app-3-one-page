@@ -11,11 +11,12 @@ interface Props {
         width: number;
         format: "avif" | "png" | "webp" | "jpeg" | "jpg" | "svg" | "tiff" | "gif";
     }
+	menu?: string[];
 }
 
-const { title, description, heroImage } = Astro.props;
+const { title, description, heroImage, menu } = Astro.props;
 ---
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} menu={menu}>
 	<style>		
 		.hero-image {
 			width: 100%;

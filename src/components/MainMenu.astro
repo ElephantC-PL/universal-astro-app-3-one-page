@@ -1,14 +1,22 @@
 ---
 import type { Lang } from "../i18n/config";
-import { getTranslatedUrl, useTranslations } from "../i18n/utils";
+import { getTranslatedUrl, getTranslatedUrlFragment, useTranslations } from "../i18n/utils";
 import HeaderLink from "./HeaderLink.astro";
 
 const lang = Astro.currentLocale as Lang;
 const t = useTranslations(lang);
 
+const menu = Astro.props.menu as string[] | undefined;
+
 ---
 
-<HeaderLink href={getTranslatedUrl(lang)}>{t('nav.home')}</HeaderLink>
+<!-- <HeaderLink href={getTranslatedUrl(lang)}>{t('nav.home')}</HeaderLink>
 <HeaderLink href={getTranslatedUrl(lang, 'blog')}>{t('nav.blog')}</HeaderLink>
 <HeaderLink href={getTranslatedUrl(lang, 'aboutUs')}>{t('nav.about')}</HeaderLink>
-<HeaderLink href={getTranslatedUrl(lang, ['deep','deeper', 'nested'])}>{t('nav.nested')}</HeaderLink>
+<HeaderLink href={getTranslatedUrl(lang, ['deep','deeper', 'nested'])}>{t('nav.nested')}</HeaderLink> -->
+
+{
+    menu?.map(item => (
+        <HeaderLink href={'#' + getTranslatedUrlFragment(lang, item)}>{t(`section.${item}`)}</HeaderLink>
+    ))
+}

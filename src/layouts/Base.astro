@@ -11,9 +11,10 @@ import MenuDrawer from '../components/MenuDrawer.astro';
 interface Props {
   title?: string;
   description?: string;  
+  menu?: string[];
 }
 const lang = Astro.currentLocale as Lang;
-const { title = "My Website", description = ""} = Astro.props;
+const { title = "My Website", description = "", menu } = Astro.props;
 ---
 
 <html lang={lang} data-theme="dark">
@@ -22,8 +23,8 @@ const { title = "My Website", description = ""} = Astro.props;
 	</head>
 
 	<body>
-		<MenuDrawer>
-			 <Header />				
+		<MenuDrawer menu={menu}>
+			 <Header menu={menu}/>				
 			<main class="pt-20">				
 				<slot/>
 			</main>
@@ -31,4 +32,26 @@ const { title = "My Website", description = ""} = Astro.props;
 			<CookieConsent/>
 		</MenuDrawer>
 	</body>
+	<script>
+		const links = document.querySelectorAll('a[data-section]');
+		const sections = document.querySelectorAll('section[id]');
+
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					const id = entry.target.getAttribute('id');
+					const link = document.querySelector(`a[data-section="#${id}"]`);
+					console.log('Intersecting:', id);
+					links.forEach(link => link.classList.remove('bg-base-300'));
+					link?.classList.add('bg-base-300');						
+				});
+			},
+			{
+				rootMargin: '-30% 0px -60% 0px',
+				threshold: 0
+			}
+		);
+			
+		sections.forEach((section) => observer.observe(section));
+	</script>
 </html>
