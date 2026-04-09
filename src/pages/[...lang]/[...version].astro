@@ -5,10 +5,11 @@ import AboutHeroImage from '../../assets/blog-placeholder-about.jpg';
 import { getAllTranslatedPaths } from '../../i18n/utils';
 import { VERSIONS, CURRENT_VERSION } from '../../version.config';
 import { DEFAULT_LOCALE } from '../../i18n/config';
-import { getCollection } from 'astro:content';
-import { SECTIONS_ORDER } from '../../version.config';
 import DefaultSection from '../../components/DefaultSection.astro';
 import { render } from 'astro:content';
+import { getSections, getMenu } from '../../utilities/sections';
+import type { Lang } from '../../i18n/config';
+
 
 
 export function getStaticPaths() {   	
@@ -28,39 +29,16 @@ export function getStaticPaths() {
 
 const {version, translatedVersion, lang} = Astro.props;
 
-const all = await getCollection('version');
+const sections = await getSections(lang as Lang, version);
 
-const sectionsRaw = all
-  .map((entry) => {
-    const [entryVersion, section, entryLang] = entry.id.split('/');
-
-    return {
-      ...entry,
-      version: entryVersion,
-      section,
-      lang: entryLang,
-    };
-  })
-  .filter(
-    (entry) => entry.lang === lang && entry.version === version.toLowerCase()
-  );
-
-const sections = SECTIONS_ORDER
-  .map((type) =>
-    sectionsRaw.find((s) => s.data.type === type)
-  )
-  .filter((s): s is NonNullable<typeof s> => Boolean(s));
-
-const menu = sections.map((section) => (section.data.type));
-
+const menu = await getMenu(lang as Lang, version);
 
 ---
 
 <Layout
 	title={translatedVersion}
 	description="Lorem ipsum dolor sit amet"
-	heroImage={AboutHeroImage}
-	menu={menu}
+	heroImage={AboutHeroImage}	
 	>
 
 	<h1>{translatedVersion}</h1>

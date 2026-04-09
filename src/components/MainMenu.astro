@@ -1,19 +1,18 @@
 ---
 import type { Lang } from "../i18n/config";
-import { getTranslatedUrl, getTranslatedUrlFragment, useTranslations } from "../i18n/utils";
+import { getTranslatedUrlFragment, useTranslations, getRouteFromTranslatedPath } from "../i18n/utils";
 import HeaderLink from "./HeaderLink.astro";
+import { getMenu } from "../utilities/sections";
+import { VERSIONS, CURRENT_VERSION } from "../version.config";
 
 const lang = Astro.currentLocale as Lang;
 const t = useTranslations(lang);
 
-const menu = Astro.props.menu as string[] | undefined;
+const currentVersion = getRouteFromTranslatedPath(Astro.url) ?? [];
+const version = VERSIONS.find(v => v === currentVersion[0]) || CURRENT_VERSION;
+const menu =  await getMenu(lang, version);
 
 ---
-
-<!-- <HeaderLink href={getTranslatedUrl(lang)}>{t('nav.home')}</HeaderLink>
-<HeaderLink href={getTranslatedUrl(lang, 'blog')}>{t('nav.blog')}</HeaderLink>
-<HeaderLink href={getTranslatedUrl(lang, 'aboutUs')}>{t('nav.about')}</HeaderLink>
-<HeaderLink href={getTranslatedUrl(lang, ['deep','deeper', 'nested'])}>{t('nav.nested')}</HeaderLink> -->
 
 {
     menu?.map(item => (

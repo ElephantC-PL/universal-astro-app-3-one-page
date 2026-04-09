@@ -10,11 +10,10 @@ import MenuDrawer from '../components/MenuDrawer.astro';
 
 interface Props {
   title?: string;
-  description?: string;  
-  menu?: string[];
+  description?: string; 
 }
 const lang = Astro.currentLocale as Lang;
-const { title = "My Website", description = "", menu } = Astro.props;
+const { title = "My Website", description = "" } = Astro.props;
 ---
 
 <html lang={lang} data-theme="dark">
@@ -23,8 +22,8 @@ const { title = "My Website", description = "", menu } = Astro.props;
 	</head>
 
 	<body>
-		<MenuDrawer menu={menu}>
-			 <Header menu={menu}/>				
+		<MenuDrawer>
+			 <Header/>				
 			<main class="pt-20">				
 				<slot/>
 			</main>
