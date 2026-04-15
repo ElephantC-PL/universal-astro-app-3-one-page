@@ -32,25 +32,7 @@ const { title = "My Website", description = "" } = Astro.props;
 		</MenuDrawer>
 	</body>
 	<script>
-		const links = document.querySelectorAll('a[data-section]');
-		const sections = document.querySelectorAll('section[id]');
-
-		const observer = new IntersectionObserver(
-			(entries) => {
-				entries.forEach((entry) => {
-					const id = entry.target.getAttribute('id');
-					const link = document.querySelector(`a[data-section="#${id}"]`);
-					console.log('Intersecting:', id);
-					links.forEach(link => link.classList.remove('bg-base-300'));
-					link?.classList.add('bg-base-300');						
-				});
-			},
-			{
-				rootMargin: '-30% 0px -60% 0px',
-				threshold: 0
-			}
-		);
-			
-		sections.forEach((section) => observer.observe(section));
+    import { initScrollSpy } from "../scripts/scrollSpy.ts";
+    initScrollSpy();
 	</script>
 </html>

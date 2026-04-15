@@ -9,6 +9,15 @@ const id = getTranslatedUrlFragment(lang, section);
 const t = useTranslations(lang);
 
 ---
+<style>  
+   	section {
+			width: 720px;
+			max-width: calc(100% - 2em);
+			margin: auto;
+			padding: 1em;
+			color: rgb(var(--gray-dark));
+		}
+</style>
 <section class="basic-section scroll-mt-24" id={id} >
   <hr />
   <h2 class="text-2xl font-bold mb-4">{t('section.' + section)}</h2>

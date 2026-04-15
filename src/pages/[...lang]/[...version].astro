@@ -39,10 +39,7 @@ const menu = await getMenu(lang as Lang, version);
 	title={translatedVersion}
 	description="Lorem ipsum dolor sit amet"
 	heroImage={AboutHeroImage}	
-	>
-
-	<h1>{translatedVersion}</h1>
-	<p>{lang}</p>	
+	>	
 	{sections.map(async (section) => {
 		const { Content } = await render(section);	 
       return (        
